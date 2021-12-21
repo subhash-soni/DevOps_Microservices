@@ -1,14 +1,27 @@
 (.devops) voclabs:~/environment/DevOps_Microservices/project-ml-microservice-kubernetes (master) $ ./run_docker.sh
-Sending build context to Docker daemon  116.7MB
+Sending build context to Docker daemon  116.9MB
 Step 1/6 : FROM python:3.7.3-stretch
+3.7.3-stretch: Pulling from library/python
+6f2f362378c5: Pull complete 
+494c27a8a6b8: Pull complete 
+7596bb83081b: Pull complete 
+372744b62d49: Pull complete 
+615db220d76c: Pull complete 
+39aa0c89bda1: Pull complete 
+ac275157d894: Pull complete 
+98d16dec829a: Pull complete 
+c8514b1c6524: Pull complete 
+Digest: sha256:205cafadbb7f0c48f2a6d655eb100a9675aa85e6e73958860f488406cce09779
+Status: Downloaded newer image for python:3.7.3-stretch
  ---> 34a518642c76
 Step 2/6 : WORKDIR /app
- ---> Using cache
- ---> 8704a21b002c
+ ---> Running in 7371223da295
+Removing intermediate container 7371223da295
+ ---> 5a534e29d0d4
 Step 3/6 : COPY . app.py /app/
- ---> cae8dd916474
+ ---> 6de5463967c0
 Step 4/6 : RUN pip install --upgrade pip &&    pip install -r requirements.txt
- ---> Running in e636128de176
+ ---> Running in 0f55fe479d54
 Collecting pip
   Downloading https://files.pythonhosted.org/packages/a4/6d/6463d49a933f547439d6b5b98b46af8742cc03ae83543e4d7688c2420f8b/pip-21.3.1-py3-none-any.whl (1.7MB)
 Installing collected packages: pip
@@ -44,45 +57,44 @@ Collecting Werkzeug==0.16.0
   Downloading Werkzeug-0.16.0-py2.py3-none-any.whl (327 kB)
 Collecting pylint==2.4.4
   Downloading pylint-2.4.4-py3-none-any.whl (302 kB)
+Collecting mccabe<0.7,>=0.6
+  Downloading mccabe-0.6.1-py2.py3-none-any.whl (8.6 kB)
 Collecting astroid<2.4,>=2.3.0
   Downloading astroid-2.3.3-py3-none-any.whl (205 kB)
 Collecting isort<5,>=4.2.5
   Downloading isort-4.3.21-py2.py3-none-any.whl (42 kB)
-Collecting mccabe<0.7,>=0.6
-  Downloading mccabe-0.6.1-py2.py3-none-any.whl (8.6 kB)
-Collecting lazy-object-proxy==1.4.*
-  Downloading lazy_object_proxy-1.4.3-cp37-cp37m-manylinux1_x86_64.whl (56 kB)
 Collecting wrapt==1.11.*
   Downloading wrapt-1.11.2.tar.gz (27 kB)
   Preparing metadata (setup.py): started
   Preparing metadata (setup.py): finished with status 'done'
 Collecting typed-ast<1.5,>=1.4.0
   Downloading typed_ast-1.4.3-cp37-cp37m-manylinux1_x86_64.whl (743 kB)
+Collecting lazy-object-proxy==1.4.*
+  Downloading lazy_object_proxy-1.4.3-cp37-cp37m-manylinux1_x86_64.whl (56 kB)
 Building wheels for collected packages: wrapt
   Building wheel for wrapt (setup.py): started
   Building wheel for wrapt (setup.py): finished with status 'done'
-  Created wheel for wrapt: filename=wrapt-1.11.2-cp37-cp37m-linux_x86_64.whl size=71332 sha256=7f4c30e24f74a35592ccc38cab23ecd5ed7a46bf5b157fdbab1b3ea905a27e89
+  Created wheel for wrapt: filename=wrapt-1.11.2-cp37-cp37m-linux_x86_64.whl size=71324 sha256=25c578fc15d9329053ebda1d26deffc2c9ecf86aedb4287607f1e8f08ba61eb6
   Stored in directory: /root/.cache/pip/wheels/23/5f/62/304b411f20be41821465a82bc98baabc5e68c3cdd1eb99db71
 Successfully built wrapt
 Installing collected packages: wrapt, typed-ast, six, numpy, MarkupSafe, lazy-object-proxy, Werkzeug, scipy, pytz, python-dateutil, mccabe, Jinja2, itsdangerous, isort, Click, astroid, scikit-learn, pylint, pandas, Flask
 Successfully installed Click-7.0 Flask-1.0.2 Jinja2-2.10.3 MarkupSafe-1.1.1 Werkzeug-0.16.0 astroid-2.3.3 isort-4.3.21 itsdangerous-1.1.0 lazy-object-proxy-1.4.3 mccabe-0.6.1 numpy-1.17.2 pandas-0.24.2 pylint-2.4.4 python-dateutil-2.8.0 pytz-2019.3 scikit-learn-0.20.3 scipy-1.3.1 six-1.12.0 typed-ast-1.4.3 wrapt-1.11.2
 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
-Removing intermediate container e636128de176
- ---> 6700ecf5ae93
+Removing intermediate container 0f55fe479d54
+ ---> f8e91aeb3377
 Step 5/6 : EXPOSE 80
- ---> Running in fa7dc7063643
-Removing intermediate container fa7dc7063643
- ---> 61dd1a142c77
+ ---> Running in 2fe8b0781b0f
+Removing intermediate container 2fe8b0781b0f
+ ---> d3b196a76058
 Step 6/6 : CMD ["python", "app.py"]
- ---> Running in 6db49eb6f452
-Removing intermediate container 6db49eb6f452
- ---> 10721ae1a52c
-Successfully built 10721ae1a52c
-Successfully tagged p4udacity-image:v1
-REPOSITORY        TAG             IMAGE ID       CREATED                  SIZE
-p4udacity-image   v1              10721ae1a52c   Less than a second ago   1.37GB
-<none>            <none>          a49a3c50da0f   45 minutes ago           1.37GB
-python            3.7.3-stretch   34a518642c76   2 years ago              929MB
+ ---> Running in 34f9fd9c3be0
+Removing intermediate container 34f9fd9c3be0
+ ---> 176c29ba4b94
+Successfully built 176c29ba4b94
+Successfully tagged dockerss1/udacity:p4udacity
+REPOSITORY          TAG             IMAGE ID       CREATED                  SIZE
+dockerss1/udacity   p4udacity       176c29ba4b94   Less than a second ago   1.37GB
+python              3.7.3-stretch   34a518642c76   2 years ago              929MB
  * Serving Flask app "app" (lazy loading)
  * Environment: production
    WARNING: Do not use the development server in a production environment.
@@ -91,19 +103,18 @@ python            3.7.3-stretch   34a518642c76   2 years ago              929MB
  * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 766-956-558
-[2021-12-21 13:04:16,564] INFO in app: JSON payload: 
+ * Debugger PIN: 569-761-019
+[2021-12-21 14:55:16,167] INFO in app: JSON payload: 
 {'CHAS': {'0': 0}, 'RM': {'0': 6.575}, 'TAX': {'0': 296.0}, 'PTRATIO': {'0': 15.3}, 'B': {'0': 396.9}, 'LSTAT': {'0': 4.98}}
-[2021-12-21 13:04:16,580] INFO in app: Inference payload DataFrame: 
+[2021-12-21 14:55:16,177] INFO in app: Inference payload DataFrame: 
    CHAS     RM    TAX  PTRATIO      B  LSTAT
 0     0  6.575  296.0     15.3  396.9   4.98
-[2021-12-21 13:04:16,592] INFO in app: Scaling Payload: 
+[2021-12-21 14:55:16,185] INFO in app: Scaling Payload: 
    CHAS     RM    TAX  PTRATIO      B  LSTAT
 0     0  6.575  296.0     15.3  396.9   4.98
-[2021-12-21 13:04:16,597] INFO in app: Output Prediction: 
+[2021-12-21 14:55:16,188] INFO in app: Output Prediction: 
 [20.35373177134412]
-172.17.0.1 - - [21/Dec/2021 13:04:16] "POST /predict HTTP/1.1" 200 -
-
+172.17.0.1 - - [21/Dec/2021 14:55:16] "POST /predict HTTP/1.1" 200 -
 ========================================================
 (.devops) voclabs:~/environment/DevOps_Microservices/project-ml-microservice-kubernetes (master) $ ./upload_docker.sh
 Password: 
@@ -112,19 +123,20 @@ Configure a credential helper to remove this warning. See
 https://docs.docker.com/engine/reference/commandline/login/#credentials-store
 
 Login Succeeded
-Docker ID and Image: dockerss1/udacity:p4udacity
+Docker ID and Image: dockerss1/udacity:p4udacity-image
 The push refers to repository [docker.io/dockerss1/udacity]
-21cbc81a9de8: Pushed 
-62aed9a5a0cd: Pushed 
-548fcc794a78: Pushed 
-799a7872c8c7: Mounted from library/python 
-715450468940: Mounted from library/python 
-c9d608035aef: Mounted from library/python 
-bb9c02680a15: Mounted from library/python 
-a637c551a0da: Mounted from library/python 
-2c8d31157b81: Mounted from library/python 
-7b76d801397d: Mounted from library/python 
-f32868cde90b: Mounted from library/python 
-0db06dff9d9a: Mounted from library/python 
-p4udacity: digest: sha256:8c725c8b2c767be6c0e1f1870c65294f507cb1d6030664a51b7fdec09af44bcb size: 2850
-=========================================================================================================
+9bbdb4423618: Pushed 
+bad702a7d1cb: Pushed 
+dd0d5d773de7: Pushed 
+799a7872c8c7: Layer already exists 
+715450468940: Layer already exists 
+c9d608035aef: Layer already exists 
+bb9c02680a15: Layer already exists 
+a637c551a0da: Layer already exists 
+2c8d31157b81: Layer already exists 
+7b76d801397d: Layer already exists 
+f32868cde90b: Layer already exists 
+0db06dff9d9a: Layer already exists 
+p4udacity-image: digest: sha256:b9fdf19a1ad3ef9900db4043924a93f669e401739181bf0552f54d6aa4a1a7fb size: 2850
+(.devops) voclabs:~/environment/DevOps_Microservices/project-ml-microservice-kubernetes (master) $ 
+========================================================

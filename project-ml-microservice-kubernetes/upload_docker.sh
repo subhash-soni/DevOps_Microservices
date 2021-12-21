@@ -5,8 +5,8 @@
 
 # Step 1:
 # Create dockerpath
-docker tag p4udacity-image:v1 dockerss1/udacity:p4udacity
-dockerpath=dockerss1/udacity:p4udacity
+docker tag dockerss1/udacity:p4udacity dockerss1/udacity:p4udacity-image
+dockerpath=dockerss1/udacity:p4udacity-image
 
 # Step 2:  
 # Authenticate & tag
@@ -15,4 +15,4 @@ echo "Docker ID and Image: $dockerpath"
 
 # Step 3:
 # Push image to a docker repository
-docker push dockerss1/udacity:p4udacity
+docker push dockerss1/udacity:p4udacity-image
