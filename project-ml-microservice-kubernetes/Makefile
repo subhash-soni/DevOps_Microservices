@@ -13,7 +13,7 @@ setup:
 	
 install:	
 	# This should be run from inside a virtualenv
-	source ~/.devops/bin/activate &&\
+	# source ~/.devops/bin/activate &&\
 		pip install --upgrade pip &&\
 			pip install -r requirements.txt
 
@@ -28,8 +28,8 @@ lint:
 	# This is linter for Dockerfiles
 	# This is a linter for Python source code linter: https://www.pylint.org/
 	# This should be run from inside a virtualenv
+	#source ~/.devops/bin/activate &&\
 	hadolint Dockerfile &&\
-		source ~/.devops/bin/activate &&\
-			pylint --disable=R,C,W1203,W1202 app.py
+		pylint --disable=R,C,W1203,W1202 app.py
 	
 all: install lint test
