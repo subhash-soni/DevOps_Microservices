@@ -1,4 +1,4 @@
-<include a CircleCI status badge, here>
+[![CircleCI](https://circleci.com/gh/subhash-soni/DevOps_Microservices/tree/master.svg?style=svg)](https://circleci.com/gh/subhash-soni/DevOps_Microservices/tree/master)
 
 ## Project Overview
 
@@ -27,12 +27,15 @@ You can find a detailed [project rubric, here](https://review.udacity.com/#!/rub
 
 * Create a virtualenv with Python 3.7 and activate it. Refer to this link for help on specifying the Python version in the virtualenv. 
 ```bash
-python3 -m pip install --user virtualenv
 # You should have Python 3.7 available in your host. 
 # Check the Python path using `which python3`
 # Use a command similar to this one:
-python3 -m virtualenv --python=<path-to-Python3.7> .devops
-source .devops/bin/activate
+* CD to directory of your project
+* python3 --version
+* which pyhthon3
+* python3 -m venv .devops
+* source .devops/bin/activate
+*
 ```
 * Run `make install` to install the necessary dependencies
 
@@ -45,6 +48,30 @@ source .devops/bin/activate
 ### Kubernetes Steps
 
 * Setup and Configure Docker locally
+* 1) Check the link for linus distribustion of Docker for installation --> https://docs.docker.com/engine/install/ubuntu/
+* 2) Run docker: ./run_docker.sh
+
 * Setup and Configure Kubernetes locally
+* 1) Check the link --> https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
+* 2) Run command: curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+* 3) Run command: sudo install minikube-linux-amd64 /usr/local/bin/minikube
+* 4) Run command: minikube start 
+* 5) To separately install kuberctl --> check https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-binary-with-curl-on-linux
+* 6) Run Command: curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+* 7) Run Command: curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+* 8) Run Command: echo "$(<kubectl.sha256) kubectl" | sha256sum --check ==> Valid o/p is: kubectl: OK
+* 9) Run command: sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+* 10) Run Command: kubectl version --client
+* 11) Post all your testing & logging, don't forget to delete the minikube by running command --> minikube delete
+* 
 * Create Flask app in Container
+* 1) Run command: ./run_docker.sh - to build and start the Flask app container
+* 2) Run command: ./upload_docker.sh - to upload the container to docker hub.
+* 3) Run ./make_prediction.sh in another terminal to make prediction and copy/paste the logging info at terminal tooutput_txt_files/docker_out.txt.
+
 * Run via kubectl
+* 1) Run command: ./run_kubernetes.sh - to build and start the Flask app container
+* 2) Run: kubectl get pods in another terminal to see pods started by previous file and check their status changing to running.
+* 3) Run ./make_prediction.sh in another terminal to make prediction and copy/paste the logging info at terminal tooutput_txt_files/kubernetes_out.txt.
+* 4) Run 'kubectl logs p4udacity' to get the logs from kubernetes on the terminal where you ran make_prediction.sh file.
+* 
