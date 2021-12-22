@@ -1,16 +1,83 @@
+
+main terminal:
+=============
+voclabs:~/environment $ devops
+(.devops) voclabs:~/environment/DevOps_Microservices/project-ml-microservice-kubernetes (master) $ docker images
+REPOSITORY                    TAG               IMAGE ID       CREATED         SIZE
+dockerss1/udacity             p4udacity         30921180b62c   9 minutes ago   1.37GB
+dockerss1/udacity             p4udacity-image   30921180b62c   9 minutes ago   1.37GB
+gcr.io/k8s-minikube/kicbase   v0.0.28           e2a6c047bedd   2 months ago    1.08GB
+python                        3.7.3-stretch     34a518642c76   2 years ago     929MB
+(.devops) voclabs:~/environment/DevOps_Microservices/project-ml-microservice-kubernetes (master) $ minikube start
+😄  minikube v1.24.0 on Amazon 2
+✨  Automatically selected the docker driver. Other choices: none, ssh
+
+  The requested memory allocation of 1954MiB does not leave room for system overhead (total system memory: 1954MiB). You may face stability issues.
+💡  Suggestion: Start minikube with less memory allocated: 'minikube start --memory=1954mb'
+
+👍  Starting control plane node minikube in cluster minikube
+🚜  Pulling base image ...
+🔥  Creating docker container (CPUs=2, Memory=1954MB) ...
+🐳  Preparing Kubernetes v1.22.3 on Docker 20.10.8 ...
+    ▪ Generating certificates and keys ...
+    ▪ Booting up control plane ...
+    ▪ Configuring RBAC rules ...
+🔎  Verifying Kubernetes components...
+    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
+🌟  Enabled addons: storage-provisioner, default-storageclass
+🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+(.devops) voclabs:~/environment/DevOps_Microservices/project-ml-microservice-kubernetes (master) $ kubectl get pod
+No resources found in default namespace.
 (.devops) voclabs:~/environment/DevOps_Microservices/project-ml-microservice-kubernetes (master) $ ./run_kubernetes.sh
 pod/p4udacity created
 NAME        READY   STATUS              RESTARTS   AGE
 p4udacity   0/1     ContainerCreating   0          0s
 error: unable to forward port because pod is not running. Current status=Pending
+(.devops) voclabs:~/environment/DevOps_Microservices/project-ml-microservice-kubernetes (master) $ kubectl get pod
+NAME        READY   STATUS              RESTARTS   AGE
+p4udacity   0/1     ContainerCreating   0          14s
+(.devops) voclabs:~/environment/DevOps_Microservices/project-ml-microservice-kubernetes (master) $ kubectl get pod
+NAME        READY   STATUS    RESTARTS   AGE
+p4udacity   1/1     Running   0          47s
 (.devops) voclabs:~/environment/DevOps_Microservices/project-ml-microservice-kubernetes (master) $ ./run_kubernetes.sh
 Error from server (AlreadyExists): pods "p4udacity" already exists
 NAME        READY   STATUS    RESTARTS   AGE
-p4udacity   1/1     Running   0          24s
+p4udacity   1/1     Running   0          61s
 Forwarding from 127.0.0.1:8000 -> 80
 Forwarding from [::1]:8000 -> 80
-Handling connection for 8000
+===========================
+2nd terminal:
 
+voclabs:~/environment $ devops
+(.devops) voclabs:~/environment/DevOps_Microservices/project-ml-microservice-kubernetes (master) $ ./make_prediction.sh 
+Port: 8000
+{
+  "prediction": [
+    20.35373177134412
+  ]
+}
+(.devops) voclabs:~/environment/DevOps_Microservices/project-ml-microservice-kubernetes (master) $ kubectl logs p4udacity
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 886-337-783
+[2021-12-22 08:38:14,801] INFO in app: JSON payload: 
+{'CHAS': {'0': 0}, 'RM': {'0': 6.575}, 'TAX': {'0': 296.0}, 'PTRATIO': {'0': 15.3}, 'B': {'0': 396.9}, 'LSTAT': {'0': 4.98}}
+[2021-12-22 08:38:14,814] INFO in app: Inference payload DataFrame: 
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2021-12-22 08:38:14,823] INFO in app: Scaling Payload: 
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2021-12-22 08:38:14,827] INFO in app: Output Prediction: 
+[20.35373177134412]
+127.0.0.1 - - [22/Dec/2021 08:38:14] "POST /predict HTTP/1.1" 200 -
+(.devops) voclabs:~/environment/DevOps_Microservices/project-ml-microservice-kubernetes (master) $ 
 =========================
 (.devops) voclabs:~/environment/DevOps_Microservices/project-ml-microservice-kubernetes (master) $ minikube delete
 🔥  Deleting "minikube" in docker ...

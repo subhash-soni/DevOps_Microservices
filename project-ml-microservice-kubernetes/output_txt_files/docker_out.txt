@@ -1,4 +1,4 @@
-(.devops) voclabs:~/environment/DevOps_Microservices/project-ml-microservice-kubernetes (master) $ ./run_docker.sh
+(.devops) voclabs:~/environment/DevOps_Microservices/project-ml-microservice-kubernetes (master) $ ./run_docker.sh 
 Sending build context to Docker daemon  116.9MB
 Step 1/6 : FROM python:3.7.3-stretch
 3.7.3-stretch: Pulling from library/python
@@ -15,13 +15,13 @@ Digest: sha256:205cafadbb7f0c48f2a6d655eb100a9675aa85e6e73958860f488406cce09779
 Status: Downloaded newer image for python:3.7.3-stretch
  ---> 34a518642c76
 Step 2/6 : WORKDIR /app
- ---> Running in 7371223da295
-Removing intermediate container 7371223da295
- ---> 5a534e29d0d4
+ ---> Running in 1d72a5489776
+Removing intermediate container 1d72a5489776
+ ---> a6e288f5429d
 Step 3/6 : COPY . app.py /app/
- ---> 6de5463967c0
+ ---> bbcb72153fdf
 Step 4/6 : RUN pip install --upgrade pip &&    pip install -r requirements.txt
- ---> Running in 0f55fe479d54
+ ---> Running in 54f384c647d5
 Collecting pip
   Downloading https://files.pythonhosted.org/packages/a4/6d/6463d49a933f547439d6b5b98b46af8742cc03ae83543e4d7688c2420f8b/pip-21.3.1-py3-none-any.whl (1.7MB)
 Installing collected packages: pip
@@ -59,42 +59,43 @@ Collecting pylint==2.4.4
   Downloading pylint-2.4.4-py3-none-any.whl (302 kB)
 Collecting mccabe<0.7,>=0.6
   Downloading mccabe-0.6.1-py2.py3-none-any.whl (8.6 kB)
-Collecting astroid<2.4,>=2.3.0
-  Downloading astroid-2.3.3-py3-none-any.whl (205 kB)
 Collecting isort<5,>=4.2.5
   Downloading isort-4.3.21-py2.py3-none-any.whl (42 kB)
+Collecting astroid<2.4,>=2.3.0
+  Downloading astroid-2.3.3-py3-none-any.whl (205 kB)
+Collecting lazy-object-proxy==1.4.*
+  Downloading lazy_object_proxy-1.4.3-cp37-cp37m-manylinux1_x86_64.whl (56 kB)
+Collecting typed-ast<1.5,>=1.4.0
+  Downloading typed_ast-1.4.3-cp37-cp37m-manylinux1_x86_64.whl (743 kB)
 Collecting wrapt==1.11.*
   Downloading wrapt-1.11.2.tar.gz (27 kB)
   Preparing metadata (setup.py): started
   Preparing metadata (setup.py): finished with status 'done'
-Collecting typed-ast<1.5,>=1.4.0
-  Downloading typed_ast-1.4.3-cp37-cp37m-manylinux1_x86_64.whl (743 kB)
-Collecting lazy-object-proxy==1.4.*
-  Downloading lazy_object_proxy-1.4.3-cp37-cp37m-manylinux1_x86_64.whl (56 kB)
 Building wheels for collected packages: wrapt
   Building wheel for wrapt (setup.py): started
   Building wheel for wrapt (setup.py): finished with status 'done'
-  Created wheel for wrapt: filename=wrapt-1.11.2-cp37-cp37m-linux_x86_64.whl size=71324 sha256=25c578fc15d9329053ebda1d26deffc2c9ecf86aedb4287607f1e8f08ba61eb6
+  Created wheel for wrapt: filename=wrapt-1.11.2-cp37-cp37m-linux_x86_64.whl size=71333 sha256=82eb102b252f13e5a551f8adcf9c9dd1753c9e92d801a0f49a09b18608a78975
   Stored in directory: /root/.cache/pip/wheels/23/5f/62/304b411f20be41821465a82bc98baabc5e68c3cdd1eb99db71
 Successfully built wrapt
 Installing collected packages: wrapt, typed-ast, six, numpy, MarkupSafe, lazy-object-proxy, Werkzeug, scipy, pytz, python-dateutil, mccabe, Jinja2, itsdangerous, isort, Click, astroid, scikit-learn, pylint, pandas, Flask
 Successfully installed Click-7.0 Flask-1.0.2 Jinja2-2.10.3 MarkupSafe-1.1.1 Werkzeug-0.16.0 astroid-2.3.3 isort-4.3.21 itsdangerous-1.1.0 lazy-object-proxy-1.4.3 mccabe-0.6.1 numpy-1.17.2 pandas-0.24.2 pylint-2.4.4 python-dateutil-2.8.0 pytz-2019.3 scikit-learn-0.20.3 scipy-1.3.1 six-1.12.0 typed-ast-1.4.3 wrapt-1.11.2
 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
-Removing intermediate container 0f55fe479d54
- ---> f8e91aeb3377
+Removing intermediate container 54f384c647d5
+ ---> e03510e2ef8e
 Step 5/6 : EXPOSE 80
- ---> Running in 2fe8b0781b0f
-Removing intermediate container 2fe8b0781b0f
- ---> d3b196a76058
+ ---> Running in b128eda3a6d4
+Removing intermediate container b128eda3a6d4
+ ---> 8adef02d441a
 Step 6/6 : CMD ["python", "app.py"]
- ---> Running in 34f9fd9c3be0
-Removing intermediate container 34f9fd9c3be0
- ---> 176c29ba4b94
-Successfully built 176c29ba4b94
+ ---> Running in 90a6f37a7d1f
+Removing intermediate container 90a6f37a7d1f
+ ---> 30921180b62c
+Successfully built 30921180b62c
 Successfully tagged dockerss1/udacity:p4udacity
-REPOSITORY          TAG             IMAGE ID       CREATED                  SIZE
-dockerss1/udacity   p4udacity       176c29ba4b94   Less than a second ago   1.37GB
-python              3.7.3-stretch   34a518642c76   2 years ago              929MB
+REPOSITORY                    TAG             IMAGE ID       CREATED                  SIZE
+dockerss1/udacity             p4udacity       30921180b62c   Less than a second ago   1.37GB
+gcr.io/k8s-minikube/kicbase   v0.0.28         e2a6c047bedd   2 months ago             1.08GB
+python                        3.7.3-stretch   34a518642c76   2 years ago              929MB
  * Serving Flask app "app" (lazy loading)
  * Environment: production
    WARNING: Do not use the development server in a production environment.
@@ -103,20 +104,20 @@ python              3.7.3-stretch   34a518642c76   2 years ago              929M
  * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 569-761-019
-[2021-12-21 14:55:16,167] INFO in app: JSON payload: 
+ * Debugger PIN: 167-411-158
+[2021-12-22 08:25:51,511] INFO in app: JSON payload: 
 {'CHAS': {'0': 0}, 'RM': {'0': 6.575}, 'TAX': {'0': 296.0}, 'PTRATIO': {'0': 15.3}, 'B': {'0': 396.9}, 'LSTAT': {'0': 4.98}}
-[2021-12-21 14:55:16,177] INFO in app: Inference payload DataFrame: 
+[2021-12-22 08:25:51,526] INFO in app: Inference payload DataFrame: 
    CHAS     RM    TAX  PTRATIO      B  LSTAT
 0     0  6.575  296.0     15.3  396.9   4.98
-[2021-12-21 14:55:16,185] INFO in app: Scaling Payload: 
+[2021-12-22 08:25:51,537] INFO in app: Scaling Payload: 
    CHAS     RM    TAX  PTRATIO      B  LSTAT
 0     0  6.575  296.0     15.3  396.9   4.98
-[2021-12-21 14:55:16,188] INFO in app: Output Prediction: 
+[2021-12-22 08:25:51,541] INFO in app: Output Prediction: 
 [20.35373177134412]
-172.17.0.1 - - [21/Dec/2021 14:55:16] "POST /predict HTTP/1.1" 200 -
+172.17.0.1 - - [22/Dec/2021 08:25:51] "POST /predict HTTP/1.1" 200 -
 ========================================================
-(.devops) voclabs:~/environment/DevOps_Microservices/project-ml-microservice-kubernetes (master) $ ./upload_docker.sh
+(.devops) voclabs:~/environment/DevOps_Microservices/project-ml-microservice-kubernetes (master) $ ./upload_docker.sh 
 Password: 
 WARNING! Your password will be stored unencrypted in /home/ec2-user/.docker/config.json.
 Configure a credential helper to remove this warning. See
@@ -125,9 +126,9 @@ https://docs.docker.com/engine/reference/commandline/login/#credentials-store
 Login Succeeded
 Docker ID and Image: dockerss1/udacity:p4udacity-image
 The push refers to repository [docker.io/dockerss1/udacity]
-9bbdb4423618: Pushed 
-bad702a7d1cb: Pushed 
-dd0d5d773de7: Pushed 
+d070c6a2a973: Pushed 
+b707cc9ae763: Pushed 
+ace168fb78a7: Pushed 
 799a7872c8c7: Layer already exists 
 715450468940: Layer already exists 
 c9d608035aef: Layer already exists 
@@ -137,6 +138,6 @@ a637c551a0da: Layer already exists
 7b76d801397d: Layer already exists 
 f32868cde90b: Layer already exists 
 0db06dff9d9a: Layer already exists 
-p4udacity-image: digest: sha256:b9fdf19a1ad3ef9900db4043924a93f669e401739181bf0552f54d6aa4a1a7fb size: 2850
+p4udacity-image: digest: sha256:b6d83caa36c3efafbd42301b674437c41a4d7aa6b91acdb89df0869d8a595038 size: 2850
 (.devops) voclabs:~/environment/DevOps_Microservices/project-ml-microservice-kubernetes (master) $ 
 ========================================================
